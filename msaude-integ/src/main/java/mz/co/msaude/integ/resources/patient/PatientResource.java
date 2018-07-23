@@ -3,6 +3,8 @@
  */
 package mz.co.msaude.integ.resources.patient;
 
+import static mz.co.msaude.integ.resources.patient.PatientResource.NAME;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,8 +28,10 @@ import mz.co.msaude.core.patient.service.PatientService;
  *
  */
 @Path("patients")
-@Service
+@Service(NAME)
 public class PatientResource {
+
+	public static final String NAME = "mz.co.msaude.integ.resources.patient.PatientResource";
 
 	@Inject
 	private PatientService patientService;
