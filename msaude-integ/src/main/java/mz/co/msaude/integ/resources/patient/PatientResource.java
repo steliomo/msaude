@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -54,4 +55,15 @@ public class PatientResource {
 
 		return Response.ok(patient).build();
 	}
+
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updatePatient(final PatientBean patientBean) throws BusinessException {
+
+		final Patient patient = this.patientService.updatePatient(patientBean.getContext(), patientBean.getPatient());
+
+		return Response.ok(patient).build();
+	}
+
 }
