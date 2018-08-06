@@ -23,6 +23,7 @@ import mz.co.msaude.boot.frameworks.exception.BusinessException;
 import mz.co.msaude.core.patient.model.Patient;
 import mz.co.msaude.core.patient.service.PatientQueryService;
 import mz.co.msaude.core.patient.service.PatientService;
+import mz.co.msaude.integ.resources.AbstractResource;
 
 /**
  * @author Stélio Moiane
@@ -30,7 +31,7 @@ import mz.co.msaude.core.patient.service.PatientService;
  */
 @Path("patients")
 @Service(NAME)
-public class PatientResource {
+public class PatientResource extends AbstractResource {
 
 	public static final String NAME = "mz.co.msaude.integ.resources.patient.PatientResource";
 
@@ -49,9 +50,9 @@ public class PatientResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createPatient(final PatientBean patientBean) throws BusinessException {
+	public Response createPatient(final Patient patient) throws BusinessException {
 
-		final Patient patient = this.patientService.createPatient(patientBean.getContext(), patientBean.getPatient());
+		this.patientService.createPatient(this.getContext(), patient);
 
 		return Response.ok(patient).build();
 	}
@@ -59,11 +60,10 @@ public class PatientResource {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updatePatient(final PatientBean patientBean) throws BusinessException {
+	public Response updatePatient(final Patient patient) throws BusinessException {
 
-		final Patient patient = this.patientService.updatePatient(patientBean.getContext(), patientBean.getPatient());
+		this.patientService.updatePatient(this.getContext(), patient);
 
 		return Response.ok(patient).build();
 	}
-
 }

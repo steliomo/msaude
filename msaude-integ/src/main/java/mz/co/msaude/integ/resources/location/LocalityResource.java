@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import mz.co.msaude.boot.frameworks.exception.BusinessException;
 import mz.co.msaude.core.location.model.Locality;
 import mz.co.msaude.core.location.service.LocalityService;
+import mz.co.msaude.integ.resources.AbstractResource;
 
 /**
  * @author Stélio Moiane
@@ -25,7 +26,7 @@ import mz.co.msaude.core.location.service.LocalityService;
  */
 @Path("localities")
 @Service(NAME)
-public class LocalityResource {
+public class LocalityResource extends AbstractResource {
 
 	public static final String NAME = "mz.co.msaude.integ.resources.location.LocalityResource";
 
@@ -35,10 +36,9 @@ public class LocalityResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createLocality(final LocationBean locationBean) throws BusinessException {
+	public Response createLocality(final Locality locality) throws BusinessException {
 
-		final Locality locality = this.localityService.createLocality(locationBean.getContext(),
-		        locationBean.getLocality());
+		this.localityService.createLocality(this.getContext(), locality);
 
 		return Response.ok(locality).build();
 	}
