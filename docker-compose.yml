@@ -1,0 +1,40 @@
+version: '3.2'
+services:
+    msaude-integ:
+        build:
+            context: .
+            dockerfile: ./integ/Dockerfile
+            args:
+               jar_file: msaude-integ/target/msaude-integ-0.0.1-SNAPSHOT.jar 
+        container_name: msaude-integ
+        ports:
+            - "8080:8080"
+        networks: 
+            - network
+        depends_on: 
+            - "msaudedb"
+        volumes: 
+          - type: bind
+            source: /opt/msaude/data
+            target: /opt/msaude/data
+        restart: unless-stopped
+
+    msaudedb:
+        build: 
+            context: ./database
+        container_name: msaudedb
+        ports: 
+            - "3306:3306"
+        networks: 
+            - network
+        volumes:
+            - type: volume
+              source: dbdata
+              target: /opt/msaude/data/system/mysql
+        restart: unless-stopped
+networks: 
+  network:
+    driver: bridge
+
+volumes:
+  dbdata:

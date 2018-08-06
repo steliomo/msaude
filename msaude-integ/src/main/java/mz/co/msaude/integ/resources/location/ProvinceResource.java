@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import mz.co.msaude.boot.frameworks.exception.BusinessException;
 import mz.co.msaude.core.location.model.Province;
 import mz.co.msaude.core.location.service.ProvinceService;
+import mz.co.msaude.integ.resources.AbstractResource;
 
 /**
  * @author Stélio Moiane
@@ -25,7 +26,7 @@ import mz.co.msaude.core.location.service.ProvinceService;
  */
 @Path("provinces")
 @Service(NAME)
-public class ProvinceResource {
+public class ProvinceResource extends AbstractResource {
 
 	public static final String NAME = "mz.co.msaude.integ.resources.location.ProvinceResource";
 
@@ -35,10 +36,9 @@ public class ProvinceResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createProvince(final LocationBean locationBean) throws BusinessException {
+	public Response createProvince(final Province province) throws BusinessException {
 
-		final Province province = this.provinceService.createProvince(locationBean.getContext(),
-		        locationBean.getProvince());
+		this.provinceService.createProvince(this.getContext(), province);
 
 		return Response.ok(province).build();
 	}
