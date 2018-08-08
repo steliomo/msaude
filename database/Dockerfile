@@ -6,7 +6,7 @@ ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_DATABASE=msaude
 ENV MYSQL_USER=msaude
 ENV MYSQL_PASSWORD=msaude
-ENV MYSQL_DATA_DIRECTORY=/opt/data/system/mysql
+ENV MYSQL_DATA_DIRECTORY=/opt/msaude/data/system/mysql
 
 ADD mysql.cnf /root/.my.cnf
 ADD localtime /etc/localtime
