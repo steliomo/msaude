@@ -30,7 +30,7 @@ services:
         volumes:
             - type: volume
               source: dbdata
-              target: /opt/msaude/data/system/mysql
+              target: /opt/msaude/data
         restart: unless-stopped
 networks: 
   network:
