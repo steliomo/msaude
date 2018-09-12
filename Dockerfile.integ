@@ -2,6 +2,9 @@ FROM openjdk:8-jdk-alpine
 
 LABEL maintainer="steliomo@gmail.com" 
 
+ADD integ/setenv.sh /usr/local/tomcat/bin/setenv.sh
+ADD integ/localtime /etc/localtime
+
 VOLUME [ "/opt/msaude/data" ]
 
 EXPOSE 8080

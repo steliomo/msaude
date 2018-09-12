@@ -6,6 +6,7 @@ package mz.co.msaude.integ.resources.config;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Service;
 
+import mz.co.msaude.integ.resources.config.user.UserResource;
 import mz.co.msaude.integ.resources.location.LocalityResource;
 import mz.co.msaude.integ.resources.location.ProvinceResource;
 import mz.co.msaude.integ.resources.patient.PatientResource;
@@ -21,5 +22,6 @@ public class JerseyConfig extends ResourceConfig {
 		this.register(PatientResource.class);
 		this.register(ProvinceResource.class);
 		this.register(LocalityResource.class);
+		this.register(UserResource.class);
 	}
 }
