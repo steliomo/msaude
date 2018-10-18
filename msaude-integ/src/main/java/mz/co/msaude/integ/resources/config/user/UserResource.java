@@ -17,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import mz.co.msaude.boot.frameworks.exception.BusinessException;
@@ -38,16 +37,13 @@ public class UserResource {
 	@Inject
 	private CustomUserDetailsService customUserDetailsService;
 
-	@Inject
-	private PasswordEncoder passwordEncoder;
-
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createUser(final UserContext userContext) throws BusinessException {
-		userContext.setPassword(this.passwordEncoder.encode(userContext.getPassword()));
 
 		this.customUserDetailsService.createUser(userContext);
+
 		return Response.ok(userContext).build();
 	}
 
@@ -60,9 +56,8 @@ public class UserResource {
 		        .getPrincipal();
 
 		final UserContext context = new UserContext();
-
 		context.setUuid(userDetails.getUuid());
-		context.setUsername(userDetails.getUsername());
+		context.setFullName(userDetails.fullName());
 
 		return Response.ok(context).build();
 	}

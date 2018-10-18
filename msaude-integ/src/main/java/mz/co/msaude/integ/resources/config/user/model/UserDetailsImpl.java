@@ -35,7 +35,7 @@ public class UserDetailsImpl implements CustomUserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.userContext.getPhoneNumber();
+		return this.userContext.getUsername();
 	}
 
 	@Override
@@ -61,5 +61,10 @@ public class UserDetailsImpl implements CustomUserDetails {
 	@Override
 	public String getUuid() {
 		return this.userContext.getUuid();
+	}
+
+	@Override
+	public String fullName() {
+		return this.userContext.getFullName();
 	}
 }

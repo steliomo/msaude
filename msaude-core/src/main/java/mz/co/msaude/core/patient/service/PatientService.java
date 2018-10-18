@@ -16,4 +16,8 @@ public interface PatientService {
 	Patient createPatient(final UserContext userContext, final Patient patient) throws BusinessException;
 
 	Patient updatePatient(final UserContext userContext, final Patient patient) throws BusinessException;
+
+	Patient createMainMember(final UserContext userContext, final Patient patient) throws BusinessException;
+
+	Patient createDependent(final UserContext userContext, final Patient patient) throws BusinessException;
 }

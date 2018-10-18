@@ -32,4 +32,9 @@ public class PatientQueryServiceImpl implements PatientQueryService {
 	public List<Patient> findAllPatients() throws BusinessException {
 		return this.patientDAO.findAll(EntityStatus.ACTIVE);
 	}
+
+	@Override
+	public Patient findPatientByUuid(final String patientUuid) throws BusinessException {
+		return this.patientDAO.findByUuid(patientUuid);
+	}
 }

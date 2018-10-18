@@ -16,4 +16,5 @@ public interface PatientQueryService {
 
 	List<Patient> findAllPatients() throws BusinessException;
 
+	Patient findPatientByUuid(final String patientUuid) throws BusinessException;
 }

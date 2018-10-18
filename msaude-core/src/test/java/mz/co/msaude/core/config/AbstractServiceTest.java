@@ -31,7 +31,6 @@ public abstract class AbstractServiceTest {
 		final UserContext context = new UserContext();
 
 		context.setUuid(UuidFactory.generate());
-		context.setUsername("steliomo");
 
 		return context;
 	}

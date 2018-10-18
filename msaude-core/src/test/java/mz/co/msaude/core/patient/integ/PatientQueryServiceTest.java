@@ -4,11 +4,13 @@
 package mz.co.msaude.core.patient.integ;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import mz.co.msaude.boot.frameworks.exception.BusinessException;
@@ -31,13 +33,25 @@ public class PatientQueryServiceTest extends AbstractServiceTest {
 	@Inject
 	private PatientQueryService patientQueryService;
 
+	private Patient patient;
+
+	@Before
+	public void setup() throws BusinessException {
+		this.patient = EntityFactory.gimme(Patient.class, PatientTemplate.VALID);
+		this.patientService.createPatient(this.getUserContext(), this.patient);
+	}
+
 	@Test
 	public void shouldFindAllPatients() throws BusinessException {
-		final Patient patient = EntityFactory.gimme(Patient.class, PatientTemplate.VALID);
-		this.patientService.createPatient(this.getUserContext(), patient);
-
 		final List<Patient> patients = this.patientQueryService.findAllPatients();
 
 		assertFalse(patients.isEmpty());
 	}
+
+	@Test
+	public void shouldFindPatientByUuid() throws BusinessException {
+		final Patient foundPatient = this.patientQueryService.findPatientByUuid(this.patient.getUuid());
+		assertNotNull(foundPatient);
+	}
+
 }

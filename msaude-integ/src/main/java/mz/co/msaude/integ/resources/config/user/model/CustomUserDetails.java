@@ -13,4 +13,5 @@ public interface CustomUserDetails extends UserDetails {
 
 	String getUuid();
 
+	String fullName();
 }

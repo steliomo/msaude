@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import mz.co.msaude.boot.frameworks.model.UserContext;
-import mz.co.msaude.boot.frameworks.util.UuidFactory;
+import mz.co.msaude.integ.resources.config.user.model.CustomUserDetails;
 
 /**
  * @author Stélio Moiane
@@ -22,9 +22,9 @@ public abstract class AbstractResource {
 	}
 
 	public UserContext getContext() {
-		this.context.setUuid(UuidFactory.generate());
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		this.context.setUsername(authentication.getName());
+		final CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();
+		this.context.setUuid(principal.getUuid());
 		return this.context;
 	}
 }
