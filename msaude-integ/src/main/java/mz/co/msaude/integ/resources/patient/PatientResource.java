@@ -48,11 +48,12 @@ public class PatientResource extends AbstractResource {
 	}
 
 	@POST
+	@Path("dependent")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createPatient(final Patient patient) throws BusinessException {
+	public Response createDependent(final Patient patient) throws BusinessException {
 
-		this.patientService.createPatient(this.getContext(), patient);
+		this.patientService.createDependent(this.getContext(), patient);
 
 		return Response.ok(patient).build();
 	}

@@ -3,9 +3,9 @@ services:
     msaude-integ:
         build:
             context: .
-            dockerfile: DockerFile.integ
+            dockerfile: Dockerfile.integ
             args:
-               jar_file: msaude-integ/target/msaude-integ-0.0.1-SNAPSHOT.jar 
+               jar_file: msaude-integ/target/*.jar 
         container_name: msaude-integ
         ports:
             - "8080:8080"
@@ -22,10 +22,10 @@ services:
     msaudedb:
         build: 
             context: .
-            dockerfile: DockerFile.db
+            dockerfile: Dockerfile.db
         container_name: msaudedb
         ports: 
-            - "3306:3306"
+            - "3307:3306"
         networks: 
             - network
         volumes:

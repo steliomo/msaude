@@ -54,13 +54,24 @@ public class Patient extends GenericEntity {
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	private LocalDate dateOfBirth;
 
-	@NotEmpty
-	@Column(name = "PHONE_NUMBER", nullable = false, length = 15)
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "PATIENT_TYPE", nullable = false, length = 20)
+	private PatientType patientType;
+
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "RELATIONSHIP_TYPE", nullable = false, length = 20)
+	private RelationshipType relationshipType;
+
+	@Column(name = "MAIN_MEMBER_UUID", length = 50)
+	private String mainMemberUuid;
+
+	@Column(name = "PHONE_NUMBER", length = 15)
 	private String phoneNumber;
 
-	@NotEmpty
 	@Email
-	@Column(name = "email", nullable = false, length = 50)
+	@Column(name = "email", length = 50)
 	private String email;
 
 	public String getName() {
@@ -95,6 +106,30 @@ public class Patient extends GenericEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public PatientType getPatientType() {
+		return this.patientType;
+	}
+
+	public void setPatientType(final PatientType patientType) {
+		this.patientType = patientType;
+	}
+
+	public RelationshipType getRelationshipType() {
+		return this.relationshipType;
+	}
+
+	public void setRelationshipType(final RelationshipType relationshipType) {
+		this.relationshipType = relationshipType;
+	}
+
+	public String getMainMemberUuid() {
+		return this.mainMemberUuid;
+	}
+
+	public void setMainMemberUuid(final String mainMemberUuid) {
+		this.mainMemberUuid = mainMemberUuid;
+	}
+
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
@@ -109,6 +144,10 @@ public class Patient extends GenericEntity {
 
 	public void setEmail(final String email) {
 		this.email = email;
+	}
+
+	public String getFullName() {
+		return this.name + " " + this.surname;
 	}
 
 	@Override
