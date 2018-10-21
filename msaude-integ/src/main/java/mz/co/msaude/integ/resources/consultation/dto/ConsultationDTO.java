@@ -37,6 +37,8 @@ public class ConsultationDTO extends GenericDTO {
 
 	private String patient;
 
+	private String consultationStatus;
+
 	public ConsultationTypeDTO getConsultationType() {
 		return this.consultationType;
 	}
@@ -83,5 +85,13 @@ public class ConsultationDTO extends GenericDTO {
 
 	public void setPatient(final String patient) {
 		this.patient = patient;
+	}
+
+	public String getConsultationStatus() {
+		return this.consultationStatus;
+	}
+
+	public void setConsultationStatus(final String consultationStatus) {
+		this.consultationStatus = consultationStatus;
 	}
 }

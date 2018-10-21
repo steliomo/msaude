@@ -9,7 +9,7 @@ package mz.co.msaude.integ.resources.util;
  */
 public interface UrlTargets {
 
-	String CONSULTATION_MODULE = "http://localhost:8082/services";
+	String CONSULTATION_MODULE = "http://consultation-integ:8080/services";
 
-	String ACCOUNT_MODULE = "http://localhost:8081/account-manager-web/services";
+	String ACCOUNT_MODULE = "http://tomcat-account:8080/account-manager-web/services";
 }

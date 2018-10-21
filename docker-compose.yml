@@ -11,6 +11,7 @@ services:
             - "8080:8080"
         networks: 
             - network
+            - consultation_network
         depends_on: 
             - "msaudedb"
         volumes: 
@@ -36,6 +37,8 @@ services:
 networks: 
   network:
     driver: bridge
+  consultation_network:
+    external: true
 
 volumes:
   dbdata:
