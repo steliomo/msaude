@@ -11,7 +11,9 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Client;
@@ -117,4 +119,23 @@ public class ConsultationResource {
 			e.printStackTrace();
 		}
 	}
+
+	@PUT
+	@Path("{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response cancelConsultation(@Context final HttpHeaders httpHeaders, @PathParam("id") final Long id,
+	        final ConsultationDTO consultationDTO) {
+
+		final String TOKEN = httpHeaders.getHeaderString(HttpHeaders.AUTHORIZATION);
+		final Client client = ClientBuilder.newClient();
+
+		final ConsultationDTO consultationResponse = client.target(UrlTargets.CONSULTATION_MODULE)
+		        .path("consultations/" + id).request(MediaType.APPLICATION_JSON)
+		        .header(HttpHeaders.AUTHORIZATION, TOKEN)
+		        .put(Entity.entity(consultationDTO, MediaType.APPLICATION_JSON), ConsultationDTO.class);
+
+		return Response.ok(consultationResponse).build();
+	}
+
 }
