@@ -23,7 +23,7 @@ import mz.co.msaude.integ.resources.healthfacility.dto.HealthFacilityDTO;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultationDTO extends GenericDTO {
 
-	private ConsultationTypeDTO consultationType;
+	private MedicalServiceTypeDTO medicalServiceTypeDTO;
 
 	private HealthFacilityDTO healthFacility;
 
@@ -39,12 +39,12 @@ public class ConsultationDTO extends GenericDTO {
 
 	private String consultationStatus;
 
-	public ConsultationTypeDTO getConsultationType() {
-		return this.consultationType;
+	public MedicalServiceTypeDTO getMedicalServiceType() {
+		return this.medicalServiceTypeDTO;
 	}
 
-	public void setConsultationType(final ConsultationTypeDTO consultationType) {
-		this.consultationType = consultationType;
+	public void setMedicalServiceType(final MedicalServiceTypeDTO medicalServiceTypeDTO) {
+		this.medicalServiceTypeDTO = medicalServiceTypeDTO;
 	}
 
 	public HealthFacilityDTO getHealthFacility() {

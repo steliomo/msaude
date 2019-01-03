@@ -33,7 +33,6 @@ import mz.co.msaude.core.location.service.LocalityQueryService;
 import mz.co.msaude.core.patient.model.Patient;
 import mz.co.msaude.core.patient.service.PatientQueryService;
 import mz.co.msaude.integ.resources.consultation.dto.ConsultationDTO;
-import mz.co.msaude.integ.resources.consultation.dto.ConsultationTypeDTO;
 import mz.co.msaude.integ.resources.util.UrlTargets;
 
 /**
@@ -51,24 +50,6 @@ public class ConsultationResource {
 
 	@Inject
 	private LocalityQueryService localityQueryService;
-
-	@GET
-	@Path("consultation-types")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getConsultationTypes(@Context final HttpHeaders httpHeaders) {
-
-		final String TOKEN = httpHeaders.getHeaderString(HttpHeaders.AUTHORIZATION);
-		final Client client = ClientBuilder.newClient();
-
-		final GenericType<List<ConsultationTypeDTO>> responseType = new GenericType<List<ConsultationTypeDTO>>() {
-		};
-
-		final List<ConsultationTypeDTO> consultationTypes = client.target(UrlTargets.CONSULTATION_MODULE)
-		        .path("consultation-types").request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, TOKEN)
-		        .get(responseType);
-
-		return Response.ok(consultationTypes).build();
-	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

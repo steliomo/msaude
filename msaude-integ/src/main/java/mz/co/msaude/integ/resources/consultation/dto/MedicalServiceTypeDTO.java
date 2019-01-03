@@ -12,13 +12,15 @@ import mz.co.msaude.integ.resources.dto.GenericDTO;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ConsultationTypeDTO extends GenericDTO {
+public class MedicalServiceTypeDTO extends GenericDTO {
 
 	private String name;
 
 	private String description;
 
 	private String imagePath;
+
+	private String serviceType;
 
 	public String getName() {
 		return this.name;
@@ -30,5 +32,9 @@ public class ConsultationTypeDTO extends GenericDTO {
 
 	public String getImagePath() {
 		return this.imagePath;
+	}
+
+	public String getServiceType() {
+		return this.serviceType;
 	}
 }

@@ -9,8 +9,9 @@ services:
         container_name: msaude-integ
         ports:
             - "8080:8080"
-        networks: 
-            - network
+        networks:
+            - network 
+            - account-manager_network
             - consultation_network
         depends_on: 
             - "msaudedb"
@@ -38,6 +39,8 @@ networks:
   network:
     driver: bridge
   consultation_network:
+    external: true
+  account-manager_network:
     external: true
 
 volumes:
